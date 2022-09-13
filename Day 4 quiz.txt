@@ -1,0 +1,31 @@
+WAQ to display all the employees who located in new jersey
+
+		select a.first_name as employee_name, b.state_province as location
+		from employees
+		a inner join emp_details_view b on a.employee_id=b.employee_id
+		where b.state_province like 'new jersey';
+
+
+WAQ to display number employees joined month wise
+
+		select count(*) as no_of_employees, to_char(hire_date,'mon') as month
+		from employees
+		group by to_char(hire_date,'mon');
+
+
+WAQ to display highest salary person information
+		
+		select * 
+		from employees
+		where salary like(select max(salary) from employees);
+
+
+WAQ to display highest salary person information depaertment wise
+
+		select employee_id, first_name, department_id,salary
+		from employees
+		where(department_id,salary) in (select department_id, max(salary) 
+		from employees
+		group bydepartment_id);
+
+		
